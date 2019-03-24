@@ -133,7 +133,7 @@ public class ListaDuplamenteCircular<Item extends Comparable<Item>>
     }
 
     @Override
-    public I2Lista<Item> cloneList(I2Lista<Item> lista) {
+    public I2Lista<Item> cloneLista(I2Lista<Item> lista) {
         ListaIterator<Item> iterator = lista.iterator();
 
         I2Lista<Item> novaLista = new ListaDuplamenteCircular<>();
@@ -144,7 +144,7 @@ public class ListaDuplamenteCircular<Item extends Comparable<Item>>
     }
 
     @Override
-    public ListaIterator iterator() {
+    public ListaIterator<Item> iterator() {
         return new ListaIterator<Item>() {
             private NoDuplo<Item> ponteiro = getInicio();
             private int cont = 0;
@@ -164,9 +164,9 @@ public class ListaDuplamenteCircular<Item extends Comparable<Item>>
     }
 
     @Override
-    public I2Lista<Item> union(I2Lista<Item> outraLista) {
-        I2Lista<Item> lista1 = cloneList(this);
-        I2Lista<Item> lista2 = cloneList(outraLista);
+    public I2Lista<Item> uniao(I2Lista<Item> outraLista) {
+        I2Lista<Item> lista1 = cloneLista(this);
+        I2Lista<Item> lista2 = cloneLista(outraLista);
         I2Lista<Item> uniao = new ListaDuplamenteCircular<>();
 
         for (int indiceLista1 = 0; indiceLista1 < lista1.getTamanho(); indiceLista1++) {
@@ -184,9 +184,9 @@ public class ListaDuplamenteCircular<Item extends Comparable<Item>>
     }
 
     @Override
-    public I2Lista<Item> intersection(I2Lista<Item> outraLista) {
-        I2Lista<Item> lista1 = cloneList(this);
-        I2Lista<Item> lista2 = cloneList(outraLista);
+    public I2Lista<Item> interseccao(I2Lista<Item> outraLista) {
+        I2Lista<Item> lista1 = cloneLista(this);
+        I2Lista<Item> lista2 = cloneLista(outraLista);
         I2Lista<Item> interseccao = new ListaDuplamenteCircular<>();
 
         for (int indiceLista1 = 0; indiceLista1 < lista1.getTamanho(); indiceLista1++) {
@@ -201,9 +201,9 @@ public class ListaDuplamenteCircular<Item extends Comparable<Item>>
     }
 
     @Override
-    public I2Lista<Item> diference(I2Lista<Item> outraLista) {
-        I2Lista<Item> lista1 = cloneList(this);
-        I2Lista<Item> lista2 = cloneList(outraLista);
+    public I2Lista<Item> diferenca(I2Lista<Item> outraLista) {
+        I2Lista<Item> lista1 = cloneLista(this);
+        I2Lista<Item> lista2 = cloneLista(outraLista);
         I2Lista<Item> diferenca = new ListaDuplamenteCircular<>();
 
         for (int indiceLista1 = 0; indiceLista1 < lista1.getTamanho(); indiceLista1++) {
@@ -230,7 +230,7 @@ public class ListaDuplamenteCircular<Item extends Comparable<Item>>
     }
 
     public I2Lista<Item> inverter() {
-        I2Lista<Item> referencia = this.cloneList(this);
+        I2Lista<Item> referencia = this.cloneLista(this);
         ListaIterator<Item> iterator = referencia.iterator();
         I2Lista<Item> listaInvertida = new ListaDuplamenteCircular<>();
         while (iterator.hasNext()) {

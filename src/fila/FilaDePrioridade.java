@@ -28,7 +28,7 @@ public class FilaDePrioridade<Item extends Comparable<Item>> extends ListaSEncad
 
     public void setTipoPrioridade(TipoPrioridade tipoPrioridade) {
         if (getTamanho() > 0) {
-            ListaSEncadeada<Item> listaSEncadeada = (ListaSEncadeada<Item>) cloneList(this);
+            ListaSEncadeada<Item> listaSEncadeada = (ListaSEncadeada<Item>) cloneLista(this);
             limpar();
             this.tipoPrioridade = tipoPrioridade;
             ListaIterator<Item> iterator = listaSEncadeada.iterator();

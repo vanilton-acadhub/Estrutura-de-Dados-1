@@ -23,7 +23,7 @@ public class FilaPrioridadeCDEncadeada<Item extends Comparable<Item>> extends Li
 
     public void setTipoPrioridade(FilaDePrioridade.TipoPrioridade tipoPrioridade) {
         if (getTamanho() > 0) {
-            ListaDuplamenteCircular<Item> listaDuplamenteCircular = (ListaDuplamenteCircular<Item>) cloneList(this);
+            ListaDuplamenteCircular<Item> listaDuplamenteCircular = (ListaDuplamenteCircular<Item>) cloneLista(this);
             limpar();
             this.tipoPrioridade = tipoPrioridade;
             ListaIterator<Item> iterator = listaDuplamenteCircular.iterator();

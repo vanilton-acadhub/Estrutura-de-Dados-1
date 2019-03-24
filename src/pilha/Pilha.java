@@ -2,7 +2,7 @@ package pilha;
 
 import lista.Vetor;
 
-public class Pilha<Item extends Comparable> extends Vetor<Item> implements I2Pilha<Item> {
+public class Pilha<Item extends Comparable<Item>> extends Vetor<Item> implements I2Pilha<Item> {
     @Override
     public void push(Item item) {
         if (this.getTamanho() == this.getCapacidadeMaxima()) {

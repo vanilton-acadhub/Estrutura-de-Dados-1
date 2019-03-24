@@ -26,9 +26,9 @@ public class ListaDuplamenteEncadeada<Item extends Comparable<Item>> implements 
     }
 
     @Override
-    public I2Lista<Item> union(I2Lista<Item> outraLista) {
-        I2Lista<Item> lista1 = cloneList(this);
-        I2Lista<Item> lista2 = cloneList(outraLista);
+    public I2Lista<Item> uniao(I2Lista<Item> outraLista) {
+        I2Lista<Item> lista1 = cloneLista(this);
+        I2Lista<Item> lista2 = cloneLista(outraLista);
         I2Lista<Item> uniao = new ListaDuplamenteEncadeada<>();
 
         for (int indiceLista1 = 0; indiceLista1 < lista1.getTamanho(); indiceLista1++) {
@@ -46,9 +46,9 @@ public class ListaDuplamenteEncadeada<Item extends Comparable<Item>> implements 
     }
 
     @Override
-    public I2Lista<Item> intersection(I2Lista<Item> outraLista) {
-        I2Lista<Item> lista1 = cloneList(this);
-        I2Lista<Item> lista2 = cloneList(outraLista);
+    public I2Lista<Item> interseccao(I2Lista<Item> outraLista) {
+        I2Lista<Item> lista1 = cloneLista(this);
+        I2Lista<Item> lista2 = cloneLista(outraLista);
         I2Lista<Item> interseccao = new ListaDuplamenteEncadeada<>();
 
         for (int indiceLista1 = 0; indiceLista1 < lista1.getTamanho(); indiceLista1++) {
@@ -63,9 +63,9 @@ public class ListaDuplamenteEncadeada<Item extends Comparable<Item>> implements 
     }
 
     @Override
-    public I2Lista<Item> diference(I2Lista<Item> outraLista) {
-        I2Lista<Item> lista1 = cloneList(this);
-        I2Lista<Item> lista2 = cloneList(outraLista);
+    public I2Lista<Item> diferenca(I2Lista<Item> outraLista) {
+        I2Lista<Item> lista1 = cloneLista(this);
+        I2Lista<Item> lista2 = cloneLista(outraLista);
         I2Lista<Item> diferenca = new ListaDuplamenteEncadeada<>();
 
         for (int indiceLista1 = 0; indiceLista1 < lista1.getTamanho(); indiceLista1++) {
@@ -260,7 +260,7 @@ public class ListaDuplamenteEncadeada<Item extends Comparable<Item>> implements 
 
     @Override
     public I2Lista<Item> ordenar() {
-        I2Lista<Item> novaReferencia = this.cloneList(this);
+        I2Lista<Item> novaReferencia = this.cloneLista(this);
         return quicksort(novaReferencia, 0, novaReferencia.getTamanho() - 1);
     }
 
@@ -304,7 +304,7 @@ public class ListaDuplamenteEncadeada<Item extends Comparable<Item>> implements 
         return indiceEsquerdo;
     }
 
-    public I2Lista<Item> cloneList(I2Lista<Item> lista) {
+    public I2Lista<Item> cloneLista(I2Lista<Item> lista) {
         I2Lista<Item> referencia = lista;
         ListaIterator<Item> iterator = referencia.iterator();
 
@@ -355,8 +355,8 @@ public class ListaDuplamenteEncadeada<Item extends Comparable<Item>> implements 
     }
 
     // o fim é um índice exclusivo, isto é, o valor deste índice não é considerado
-    public I2Lista<Item> sublist(int inicio, int fim) {
-        ListaIterator<Item> iterator = this.cloneList(this).iterator();
+    public I2Lista<Item> subLista(int inicio, int fim) {
+        ListaIterator<Item> iterator = this.cloneLista(this).iterator();
         I2Lista<Item> subconjunto = new ListaDuplamenteEncadeada<>();
 
         while (iterator.hasNext() && inicio < fim) {
@@ -374,7 +374,7 @@ public class ListaDuplamenteEncadeada<Item extends Comparable<Item>> implements 
     }
 
     @Override
-    public ListaIterator iterator() {
+    public ListaIterator<Item> iterator() {
         return new ListaIterator<Item>() {
             private NoDuplo<Item> ponteiro = getInicio();
 
@@ -411,7 +411,7 @@ public class ListaDuplamenteEncadeada<Item extends Comparable<Item>> implements 
     }
 
     public I2Lista<Item> inverter() {
-        I2Lista<Item> referencia = this.cloneList(this);
+        I2Lista<Item> referencia = this.cloneLista(this);
         ListaIterator<Item> iterator = referencia.iterator();
         I2Lista<Item> listaInvertida = new ListaDuplamenteEncadeada<>();
         while (iterator.hasNext()) {

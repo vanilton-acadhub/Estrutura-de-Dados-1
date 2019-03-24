@@ -1,7 +1,5 @@
 package pilha;
 
-import lista.ListaIteravel;
-
 public interface I2Pilha<Item> {
 
     void push(Item item);

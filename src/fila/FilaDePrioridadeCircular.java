@@ -23,7 +23,7 @@ public class FilaDePrioridadeCircular<Item extends Comparable<Item>> extends Lis
 
     public void setTipoPrioridade(FilaDePrioridade.TipoPrioridade tipoPrioridade) {
         if (getTamanho() > 0) {
-            ListaCircular<Item> listaSEncadeada = (ListaCircular<Item>) cloneList(this);
+            ListaCircular<Item> listaSEncadeada = (ListaCircular<Item>) cloneLista(this);
             limpar();
             this.tipoPrioridade = tipoPrioridade;
             ListaIterator<Item> iterator = listaSEncadeada.iterator();

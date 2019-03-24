@@ -3,7 +3,7 @@ package pilha;
 import lista.ListaIterator;
 import lista.ListaSEncadeada;
 
-public class PilhaEncadeada<Item extends Comparable> extends ListaSEncadeada<Item>
+public class PilhaEncadeada<Item extends Comparable<Item>> extends ListaSEncadeada<Item>
         implements I2Pilha<Item> {
     @Override
     public void push(Item item) {
@@ -29,7 +29,7 @@ public class PilhaEncadeada<Item extends Comparable> extends ListaSEncadeada<Ite
 
     @Override
     public String toString() {
-        ListaSEncadeada<Item> invertida = (ListaSEncadeada<Item>) cloneList(this);
+        ListaSEncadeada<Item> invertida = (ListaSEncadeada<Item>) cloneLista(this);
         ListaIterator<Item> iterator = invertida.inverter().iterator();
         StringBuilder lista = new StringBuilder("[");
         int cont = 0;

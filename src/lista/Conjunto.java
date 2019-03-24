@@ -8,7 +8,7 @@ public interface Conjunto<Item> {
      * @param outraLista A outra lista que vamos unir a lista atual.
      * @return A nova lista da união.
      */
-    I2Lista<Item> union(I2Lista<Item> outraLista);
+    I2Lista<Item> uniao(I2Lista<Item> outraLista);
 
     /**
      * Realiza a operação de intersecção da lista atual com a lista passada por parâmetro.
@@ -16,12 +16,12 @@ public interface Conjunto<Item> {
      * @param outraLista A outra lista que vamos tirar a intersecção com a lista atual.
      * @return A intersecção das duas listas.
      */
-    I2Lista<Item> intersection(I2Lista<Item> outraLista);
+    I2Lista<Item> interseccao(I2Lista<Item> outraLista);
 
     /**
      * Realiza a operação de diferença da lista atual com a lista passada por parâmetro.
      * @param outraLista A outra lista que vamos tirar a difernça.
      * @return A diferença da lista atual com a lista passada por parâmetro.
      */
-    I2Lista<Item> diference(I2Lista<Item> outraLista);
+    I2Lista<Item> diferenca(I2Lista<Item> outraLista);
 }

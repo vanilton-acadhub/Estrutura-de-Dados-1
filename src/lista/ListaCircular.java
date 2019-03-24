@@ -1,6 +1,6 @@
 package lista;
 
-public class ListaCircular<Item extends Comparable> extends ListaSEncadeada<Item> {
+public class ListaCircular<Item extends Comparable<Item>> extends ListaSEncadeada<Item> {
     @Override
     public void inserirInicio(Item item) {
         No<Item> novoNo = new No<>(item);
@@ -95,7 +95,7 @@ public class ListaCircular<Item extends Comparable> extends ListaSEncadeada<Item
     }
 
     @Override
-    public I2Lista<Item> cloneList(I2Lista<Item> lista) {
+    public I2Lista<Item> cloneLista(I2Lista<Item> lista) {
         ListaIterator<Item> iterator = lista.iterator();
 
         I2Lista<Item> novaLista = new ListaCircular<>();
@@ -107,7 +107,7 @@ public class ListaCircular<Item extends Comparable> extends ListaSEncadeada<Item
 
     @Override
     public I2Lista<Item> inverter() {
-        I2Lista<Item> referencia = this.cloneList(this);
+        I2Lista<Item> referencia = this.cloneLista(this);
         ListaIterator<Item> iterator = referencia.iterator();
         I2Lista<Item> listaInvertida = new ListaCircular<>();
         while (iterator.hasNext()) {
@@ -120,8 +120,8 @@ public class ListaCircular<Item extends Comparable> extends ListaSEncadeada<Item
     @Override
     public I2Lista<Item> intercalar(I2Lista<Item> lista) {
         I2Lista<Item> listaIntercalada = new ListaCircular<>();
-        I2Lista<Item> referencia = this.cloneList(this);
-        I2Lista<Item> referenciaParam = this.cloneList(lista);
+        I2Lista<Item> referencia = this.cloneLista(this);
+        I2Lista<Item> referenciaParam = this.cloneLista(lista);
 
         ListaIterator<Item> iteratorLista1 = referencia.iterator();
         ListaIterator<Item> iteratorLista2 = referenciaParam.iterator();
@@ -149,8 +149,8 @@ public class ListaCircular<Item extends Comparable> extends ListaSEncadeada<Item
     }
 
     @Override
-    public I2Lista<Item> sublist(int inicio, int fim) {
-        ListaIterator<Item> iterator = this.cloneList(this).iterator();
+    public I2Lista<Item> subLista(int inicio, int fim) {
+        ListaIterator<Item> iterator = this.cloneLista(this).iterator();
         I2Lista<Item> subconjunto = new ListaCircular<>();
 
         while (iterator.hasNext() && inicio < fim) {
@@ -182,9 +182,9 @@ public class ListaCircular<Item extends Comparable> extends ListaSEncadeada<Item
     }
 
     @Override
-    public I2Lista<Item> union(I2Lista<Item> outraLista) {
-        I2Lista<Item> lista1 = cloneList(this);
-        I2Lista<Item> lista2 = cloneList(outraLista);
+    public I2Lista<Item> uniao(I2Lista<Item> outraLista) {
+        I2Lista<Item> lista1 = cloneLista(this);
+        I2Lista<Item> lista2 = cloneLista(outraLista);
         I2Lista<Item> uniao = new ListaCircular<>();
 
         for (int indiceLista1 = 0; indiceLista1 < lista1.getTamanho(); indiceLista1++) {
@@ -202,9 +202,9 @@ public class ListaCircular<Item extends Comparable> extends ListaSEncadeada<Item
     }
 
     @Override
-    public I2Lista<Item> intersection(I2Lista<Item> outraLista) {
-        I2Lista<Item> lista1 = cloneList(this);
-        I2Lista<Item> lista2 = cloneList(outraLista);
+    public I2Lista<Item> interseccao(I2Lista<Item> outraLista) {
+        I2Lista<Item> lista1 = cloneLista(this);
+        I2Lista<Item> lista2 = cloneLista(outraLista);
         I2Lista<Item> interseccao = new ListaCircular<>();
 
         for (int indiceLista1 = 0; indiceLista1 < lista1.getTamanho(); indiceLista1++) {
@@ -219,9 +219,9 @@ public class ListaCircular<Item extends Comparable> extends ListaSEncadeada<Item
     }
 
     @Override
-    public I2Lista<Item> diference(I2Lista<Item> outraLista) {
-        I2Lista<Item> lista1 = cloneList(this);
-        I2Lista<Item> lista2 = cloneList(outraLista);
+    public I2Lista<Item> diferenca(I2Lista<Item> outraLista) {
+        I2Lista<Item> lista1 = cloneLista(this);
+        I2Lista<Item> lista2 = cloneLista(outraLista);
         I2Lista<Item> diferenca = new ListaCircular<>();
 
         for (int indiceLista1 = 0; indiceLista1 < lista1.getTamanho(); indiceLista1++) {

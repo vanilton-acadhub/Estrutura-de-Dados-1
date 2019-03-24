@@ -46,5 +46,12 @@ public class MainAbstractFactory {
         pilha.push('n');
         System.out.println(pilha);
         System.out.println("Topo da pilha: " + pilha.top());
+        
+        estruturaFactory = FactoryProducer.getFactory(TipoEstrutura.FILA);
+        I2Fila<Integer> filaPrioridade = estruturaFactory.getFila(TipoFila.FILA_DE_PRIORIDADE);
+        filaPrioridade.enqueue(9);
+        filaPrioridade.enqueue(1);
+        filaPrioridade.enqueue(10);
+        System.out.println("Fila de prioridade: " + filaPrioridade);
     }
 }

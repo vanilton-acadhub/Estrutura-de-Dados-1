@@ -1,6 +1,6 @@
 package lista;
 
-public class ListaSEncadeada<Item extends Comparable> implements I2Lista<Item>, Conjunto<Item> {
+public class ListaSEncadeada<Item extends Comparable<Item>> implements I2Lista<Item>, Conjunto<Item> {
     private No<Item> inicio;
     private No<Item> ultimo;
     private int tamanho;
@@ -74,7 +74,7 @@ public class ListaSEncadeada<Item extends Comparable> implements I2Lista<Item>, 
     }
 
     public void inserir(I2Lista<Item> lista) {
-        ListaSEncadeada<Item> referenciaParam = (ListaSEncadeada<Item>) this.cloneList(lista);
+        ListaSEncadeada<Item> referenciaParam = (ListaSEncadeada<Item>) this.cloneLista(lista);
         ListaIterator<Item> iterator = referenciaParam.iterator();
         while (iterator.hasNext()) {
             this.inserir(iterator.next());
@@ -221,7 +221,7 @@ public class ListaSEncadeada<Item extends Comparable> implements I2Lista<Item>, 
 
     @Override
     public I2Lista<Item> ordenar() {
-        I2Lista<Item> novaReferencia = this.cloneList(this);
+        I2Lista<Item> novaReferencia = this.cloneLista(this);
         return quicksort(novaReferencia, 0, novaReferencia.getTamanho() - 1);
     }
 
@@ -294,7 +294,7 @@ public class ListaSEncadeada<Item extends Comparable> implements I2Lista<Item>, 
         };
     }
     
-    public I2Lista<Item> cloneList(I2Lista<Item> lista) {
+    public I2Lista<Item> cloneLista(I2Lista<Item> lista) {
         I2Lista<Item> referencia = lista;
         ListaIterator<Item> iterator = referencia.iterator();
 
@@ -306,9 +306,9 @@ public class ListaSEncadeada<Item extends Comparable> implements I2Lista<Item>, 
     }
 
     @Override
-    public I2Lista<Item> union(I2Lista<Item> outraLista) {
-        I2Lista<Item> lista1 = cloneList(this);
-        I2Lista<Item> lista2 = cloneList(outraLista);
+    public I2Lista<Item> uniao(I2Lista<Item> outraLista) {
+        I2Lista<Item> lista1 = cloneLista(this);
+        I2Lista<Item> lista2 = cloneLista(outraLista);
         I2Lista<Item> uniao = new ListaSEncadeada<>();
 
         for (int indiceLista1 = 0; indiceLista1 < lista1.getTamanho(); indiceLista1++) {
@@ -326,9 +326,9 @@ public class ListaSEncadeada<Item extends Comparable> implements I2Lista<Item>, 
     }
 
     @Override
-    public I2Lista<Item> intersection(I2Lista<Item> outraLista) {
-        I2Lista<Item> lista1 = cloneList(this);
-        I2Lista<Item> lista2 = cloneList(outraLista);
+    public I2Lista<Item> interseccao(I2Lista<Item> outraLista) {
+        I2Lista<Item> lista1 = cloneLista(this);
+        I2Lista<Item> lista2 = cloneLista(outraLista);
         I2Lista<Item> interseccao = new ListaSEncadeada<>();
 
         for (int indiceLista1 = 0; indiceLista1 < lista1.getTamanho(); indiceLista1++) {
@@ -343,9 +343,9 @@ public class ListaSEncadeada<Item extends Comparable> implements I2Lista<Item>, 
     }
 
     @Override
-    public I2Lista<Item> diference(I2Lista<Item> outraLista) {
-        I2Lista<Item> lista1 = cloneList(this);
-        I2Lista<Item> lista2 = cloneList(outraLista);
+    public I2Lista<Item> diferenca(I2Lista<Item> outraLista) {
+        I2Lista<Item> lista1 = cloneLista(this);
+        I2Lista<Item> lista2 = cloneLista(outraLista);
         I2Lista<Item> diferenca = new ListaSEncadeada<>();
 
         for (int indiceLista1 = 0; indiceLista1 < lista1.getTamanho(); indiceLista1++) {
@@ -372,7 +372,7 @@ public class ListaSEncadeada<Item extends Comparable> implements I2Lista<Item>, 
     }
 
     public I2Lista<Item> inverter() {
-        I2Lista<Item> referencia = this.cloneList(this);
+        I2Lista<Item> referencia = this.cloneLista(this);
         ListaIterator<Item> iterator = referencia.iterator();
         I2Lista<Item> listaInvertida = new ListaSEncadeada<>();
         while (iterator.hasNext()) {
@@ -381,11 +381,25 @@ public class ListaSEncadeada<Item extends Comparable> implements I2Lista<Item>, 
 
         return listaInvertida;
     }
+    
+    public I2Lista<Item> inverterComPonteiros() {
+        No<Item> primeiro = getInicio();
+        No<Item> ultimo = getUltimo();
+        while (indexOf(primeiro.getItem()) < indexOf(ultimo.getItem())) {
+            Item aux = primeiro.getItem();
+            primeiro.setItem(ultimo.getItem());
+            ultimo.setItem(aux);
+            primeiro = primeiro.getProximo();
+            ultimo = pegaNo(indexOf(ultimo.getItem()) - 1);
+        }
+        return this;
+    }
+
 
     public I2Lista<Item> intercalar(I2Lista<Item> lista) {
         I2Lista<Item> listaIntercalada = new ListaSEncadeada<>();
-        I2Lista<Item> referencia = this.cloneList(this);
-        I2Lista<Item> referenciaParam = this.cloneList(lista);
+        I2Lista<Item> referencia = this.cloneLista(this);
+        I2Lista<Item> referenciaParam = this.cloneLista(lista);
 
         ListaIterator<Item> iteratorLista1 = referencia.iterator();
         ListaIterator<Item> iteratorLista2 = referenciaParam.iterator();
@@ -413,8 +427,8 @@ public class ListaSEncadeada<Item extends Comparable> implements I2Lista<Item>, 
     }
 
     // o fim é um índice exclusivo, isto é, o valor deste índice não é considerado
-    public I2Lista<Item> sublist(int inicio, int fim) {
-        ListaIterator<Item> iterator = this.cloneList(this).iterator();
+    public I2Lista<Item> subLista(int inicio, int fim) {
+        ListaIterator<Item> iterator = this.cloneLista(this).iterator();
         I2Lista<Item> subconjunto = new ListaSEncadeada<>();
 
         while (iterator.hasNext() && inicio < fim) {
@@ -456,9 +470,9 @@ public class ListaSEncadeada<Item extends Comparable> implements I2Lista<Item>, 
         return indiceEncontrado;
     }
 
-    public Item[] toArray() {
-        Item[] arr = (Item[]) new Comparable[this.getTamanho()];
-        ListaSEncadeada<Item> referencia = (ListaSEncadeada<Item>) this.cloneList(this);
+    public Object[] toArray() {
+        Object[] arr = new Comparable[this.getTamanho()];
+        ListaSEncadeada<Item> referencia = (ListaSEncadeada<Item>) this.cloneLista(this);
         ListaIterator<Item> iterator = referencia.iterator();
 
         for (int indice = 0; iterator.hasNext() && indice < this.getTamanho(); indice++) {

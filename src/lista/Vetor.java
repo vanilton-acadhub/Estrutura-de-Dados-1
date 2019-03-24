@@ -5,7 +5,7 @@ package lista;
  * cresce de acordo com a demanda.
  * @param <Item> Um item que implemente a interface Comparable
  */
-public class Vetor<Item extends Comparable> implements I2Lista<Item>, Conjunto<Item> {
+public class Vetor<Item extends Comparable<Item>> implements I2Lista<Item>, Conjunto<Item> {
     private Item[] itens;
     private int tamanho;
     private int capacidadeMaxima;
@@ -175,7 +175,7 @@ public class Vetor<Item extends Comparable> implements I2Lista<Item>, Conjunto<I
     }
 
     @Override
-    public I2Lista<Item> union(I2Lista<Item> outraLista) {
+    public I2Lista<Item> uniao(I2Lista<Item> outraLista) {
         Vetor<Item> lista1 = clone(this);
         Vetor<Item> lista2 = clone(outraLista);
         Vetor<Item> uniao = new Vetor<>(this.getTamanho() + lista1.getTamanho());
@@ -195,7 +195,7 @@ public class Vetor<Item extends Comparable> implements I2Lista<Item>, Conjunto<I
     }
 
     @Override
-    public I2Lista<Item> intersection(I2Lista<Item> outraLista) {
+    public I2Lista<Item> interseccao(I2Lista<Item> outraLista) {
         Vetor<Item> lista1 = clone(this);
         Vetor<Item> lista2 = clone(outraLista);
         Vetor<Item> interseccao = new Vetor<>(this.getTamanho() + lista1.getTamanho());
@@ -213,7 +213,7 @@ public class Vetor<Item extends Comparable> implements I2Lista<Item>, Conjunto<I
     }
 
     @Override
-    public I2Lista<Item> diference(I2Lista<Item> outraLista) {
+    public I2Lista<Item> diferenca(I2Lista<Item> outraLista) {
         Vetor<Item> lista1 = clone(this);
         Vetor<Item> lista2 = clone(outraLista);
         Vetor<Item> diferenca = new Vetor<>(this.getTamanho() + lista2.getTamanho());
